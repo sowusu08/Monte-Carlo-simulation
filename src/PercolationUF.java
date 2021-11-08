@@ -27,7 +27,7 @@ public class PercolationUF implements IPercolate{
     }
 
     // method to convert row, col index to single integer location
-    public int getIndex(int row, int col){
+    private int getIndex(int row, int col){
         return (row*myGrid.length) + col;
     }
 
@@ -82,7 +82,7 @@ public class PercolationUF implements IPercolate{
         }
 
         //checks to be sure the cell is not already open (true)
-        System.out.println(myGrid[row][col]);
+        //System.out.println(myGrid[row][col]);
         /*if (!myGrid[row][col])      // if not false (open) stop the call
             return;*/
         if (myGrid[row][col] == true)      // if already open (true) stop the call
