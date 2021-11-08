@@ -24,12 +24,17 @@ public class PercolationBFS extends PercolationDFSFast{
         while(!q.isEmpty()){
             // dequeue a cell
             int[] cell = q.remove();
+
             // Check the dequeued cell’s four neighbors
             // if the neighboring cell is open and not full, mark as FULL and add to queue
-            dfs(row - 1, col);
-            dfs(row, col - 1);
-            dfs(row, col + 1);
-            dfs(row + 1, col);
+            if(inBounds(row - 1, col) && isOpen(row - 1, col)){myGrid[row - 1][col] = FULL; q.add(new int[]{row - 1, col});}
+            if(inBounds(row, col - 1) && isOpen(row, col - 1)){myGrid[row][col - 1] = FULL; q.add(new int[]{row, col - 1});}
+            if(inBounds(row, col + 1) && isOpen(row, col + 1)){myGrid[row][col + 1] = FULL; q.add(new int[]{row, col + 1});}
+            if(inBounds(row + 1, col) && isOpen(row+1, col)){myGrid[row + 1][col] = FULL; q.add(new int[]{row + 1, col});}
+            //dfs(row - 1, col);
+            //dfs(row, col - 1);
+            //dfs(row, col + 1);
+            //dfs(row + 1, col);
         }
 
 
