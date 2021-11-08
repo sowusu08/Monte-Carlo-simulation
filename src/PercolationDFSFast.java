@@ -1,6 +1,8 @@
+import java.util.Arrays;
+
 public class PercolationDFSFast extends PercolationDFS{
 
-    PercolationDFSFast(int size){
+    public PercolationDFSFast(int size){
        super(size);
     }
 
