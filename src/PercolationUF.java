@@ -16,8 +16,10 @@ public class PercolationUF implements IPercolate{
      */
     public PercolationUF(IUnionFind finder, int size) {
         myGrid = new boolean[size][size];
-        finder.initialize(size);
         myFinder = finder;
+        myFinder.initialize((size*size + 2));
+        /*finder.initialize(size * size + 2);
+        myFinder = finder;*/
 
         VTOP = size * size;
         VBOTTOM = size * size + 1;
@@ -26,7 +28,7 @@ public class PercolationUF implements IPercolate{
 
     // method to convert row, col index to single integer location
     public int getIndex(int row, int col){
-        return row*myGrid.length + col;
+        return (row*myGrid.length) + col;
     }
 
     // Method isOpen throws an Exception when needed
@@ -50,7 +52,7 @@ public class PercolationUF implements IPercolate{
                     String.format("(%d,%d) not in bounds", row,col));
         }
 
-        //System.out.println(VTOP);
+        //System.out.println(VTOP); // 100
         //System.out.println(getIndex(row,col));
         return myFinder.connected(VTOP, getIndex(row, col));
     }
@@ -79,7 +81,11 @@ public class PercolationUF implements IPercolate{
                     String.format("(%d,%d) not in bounds", row,col));
         }
 
-        if (!myGrid[row][col])      // if not false (open) stop the call
+        //checks to be sure the cell is not already open (true)
+        System.out.println(myGrid[row][col]);
+        /*if (!myGrid[row][col])      // if not false (open) stop the call
+            return;*/
+        if (myGrid[row][col] == true)      // if already open (true) stop the call
             return;
 
         // otherwise the cell is closed so open it
