@@ -26,11 +26,26 @@ public class PercolationBFS extends PercolationDFSFast{
             int[] cell = q.remove();
 
             // Check the dequeued cell’s four neighbors
+            int cellRow = cell[0];
+            int cellCol = cell[1];
+
             // if the neighboring cell is open and not full, mark as FULL and add to queue
-            if(inBounds(row - 1, col) && isOpen(row - 1, col)){myGrid[row - 1][col] = FULL; q.add(new int[]{row - 1, col});}
-            if(inBounds(row, col - 1) && isOpen(row, col - 1)){myGrid[row][col - 1] = FULL; q.add(new int[]{row, col - 1});}
-            if(inBounds(row, col + 1) && isOpen(row, col + 1)){myGrid[row][col + 1] = FULL; q.add(new int[]{row, col + 1});}
-            if(inBounds(row + 1, col) && isOpen(row+1, col)){myGrid[row + 1][col] = FULL; q.add(new int[]{row + 1, col});}
+            if(inBounds(cellRow - 1, cellCol) && isOpen(cellRow - 1, cellCol) && !isFull(cellRow - 1, cellCol)){
+                myGrid[cellRow - 1][cellCol] = FULL;
+                q.add(new int[]{cellRow - 1, cellCol});
+            }
+            if(inBounds(cellRow, cellCol - 1) && isOpen(cellRow, cellCol - 1) && !isFull(cellRow, cellCol - 1)){
+                myGrid[cellRow][cellCol - 1] = FULL;
+                q.add(new int[]{cellRow, cellCol - 1});
+            }
+            if(inBounds(cellRow, cellCol + 1) && isOpen(cellRow, cellCol + 1) && !isFull(cellRow, cellCol + 1)){
+                myGrid[cellRow][cellCol + 1] = FULL;
+                q.add(new int[]{cellRow, cellCol + 1});
+            }
+            if(inBounds(cellRow + 1, cellCol) && isOpen(cellRow+1, cellCol) && !isFull(cellRow+1, cellCol)){
+                myGrid[cellRow + 1][cellCol] = FULL;
+                q.add(new int[]{cellRow + 1, cellCol});
+            }
             //dfs(row - 1, col);
             //dfs(row, col - 1);
             //dfs(row, col + 1);
